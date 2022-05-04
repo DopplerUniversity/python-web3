@@ -1,0 +1,8 @@
+[devshell]
+packages = [
+  "python3"
+]
+
+[[commands]]
+package = "devshell.cli"
+help = "Per project developer environments"
