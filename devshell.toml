@@ -1,6 +1,6 @@
 [devshell]
 packages = [
-  "python3"
+  "python3", "gcc", "nodejs", "doppler"
 ]
 
 [[commands]]
