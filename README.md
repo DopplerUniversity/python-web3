@@ -1,6 +1,6 @@
 # python-web3
 
-Get started quickly - please note that you'll need a functional python installation and a running `geth` node for the `web3` library to connect to<sub>[1]</sup>. This command will return the timestamp of the latest minted block:
+Get started quickly - please note that you'll need a functional python installation and a running `geth` node for the `web3` library to connect to<sup>[1]</sup>. This command will return the timestamp of the latest minted block:
 
 ```console
 git clone https://github.com/DopplerUniversity/python-web3
