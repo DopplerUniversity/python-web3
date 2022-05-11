@@ -42,15 +42,25 @@ def get_txn(w3, txn):
 if __name__ == '__main__':
     # Construct a parser with subcommands
     parser = ArgumentParser(description='web3 tools script')
-    subparsers = parser.add_subparsers(help='Get latest block timestamp')
-    subparsers.add_parser('latest-block').set_defaults(f=get_latest)
-    subparsers.add_parser('accounts').set_defaults(f=get_accounts)
-    subparsers.add_parser('balance').set_defaults(f=get_balance)
-    sender = subparsers.add_parser('send')
+    subparsers = parser.add_subparsers()
+    subparsers.add_parser(
+        'latest-block', help='Get latest block timestamp'
+    ).set_defaults(f=get_latest)
+    subparsers.add_parser(
+        'accounts', help='List public addresses from local keychain'
+    ).set_defaults(f=get_accounts)
+    subparsers.add_parser(
+        'balance', help='Print ETH balance of the first wallet found'
+    ).set_defaults(f=get_balance)
+    sender = subparsers.add_parser(
+        'send', help='Send ETH to a given address in hex form'
+    )
     sender.set_defaults(f=send_eth)
     sender.add_argument('to', help='address to send funds to')
     sender.add_argument('amount', help='quantity of ETH to send')
-    viewer = subparsers.add_parser('get-txn')
+    viewer = subparsers.add_parser(
+        'get-txn', help='Retrieve transaction data for a given ID'
+    )
     viewer.set_defaults(f=get_txn)
     viewer.add_argument('txn', help='transaction ID to fetch')
     args = parser.parse_args()
