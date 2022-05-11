@@ -116,7 +116,8 @@ python web3-app.py balance
 But to send a transaction, we'll need our passphrase which is where the Doppler CLI comes in by injecting the `ETH_PASSPHRASE` as an environment variable:
 
 ```sh
-doppler run -- python web3-app.py send {WHAT_IS_THIS?} 0.01
+# Replace {ADDRESS} with the public address of the wallet you would like to send funds to, e.g. 0x...
+doppler run -- python web3-app.py send {ADDRESS} 0.01
 ```
 
 You can then use the returned transaction hash to look it up on the blockchain:
