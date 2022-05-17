@@ -2,6 +2,8 @@ from argparse import ArgumentParser
 from pathlib import Path
 from datetime import datetime, timezone
 from os import environ
+from pprint import pprint
+import json
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
 
@@ -21,15 +23,17 @@ def get_accounts(w3):
 # Show the balance of the first account found.
 def get_balance(w3):
     print(Web3.fromWei(w3.eth.get_balance(w3.eth.accounts[0]), 'ether'))
+    Web3.eth.account
 
 # Send an ETH amount to a designated address:
-def send_eth(w3, to, amount):
+def send_eth(w3, to, amount):    
     passphrase = environ.get('ETH_PASSPHRASE')
     if not passphrase:
-        print('Could not find passphrase, is it set?')
+        print('The ETH_PASSPHRASE environment variable was not set.')
+        print('Re-run this script using the Doppler CLI: doppler run -- send Ox...')
         exit(1)
     txn = w3.geth.personal.send_transaction({
-        'to': to,
+        'to': Web3.toChecksumAddress(to),
         'value': w3.toWei(amount, 'ether'),
         'from': w3.geth.personal.list_accounts()[0]
     }, passphrase)
@@ -37,7 +41,7 @@ def send_eth(w3, to, amount):
     
 # Retrieve and display a given transaction ID
 def get_txn(w3, txn):
-    print(w3.eth.get_transaction(txn))
+    pprint(dict(w3.eth.get_transaction(txn)))
 
 if __name__ == '__main__':
     # Construct a parser with subcommands
