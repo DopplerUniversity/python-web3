@@ -1,8 +1,0 @@
-[devshell]
-packages = [
-  "python3", "gcc", "nodejs", "doppler"
-]
-
-[[commands]]
-package = "devshell.cli"
-help = "Per project developer environments"

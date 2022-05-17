@@ -131,3 +131,9 @@ dmypy.json
 
 # direnv
 .direnv
+
+# Other
+.DS_Store
+.idea
+.vscode
+
